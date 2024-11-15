@@ -18,25 +18,17 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     </style>
 
-    <h1> {{controller_name}} </h1>
+    <h1> Creando visita </h1>
 
-        <h2>{{restaurante.getNombre()}} </h2>
-        <h2>{{restaurante.getDireccion()}} </h2>
-        <h2>{{restaurante.getTelefono()}} </h2>
-        <h2>{{restaurante.getTipoDeCocina()}} </h2>
-        <h2>Visitas al restaurante: </h2>
-        {% if restaurante.getVisitas() is empty %}
-            <h3>Este restaurante no tiene visitas. </h3>
-        {% else %}
-            {% for visita in restaurante.getVisitas() %}
-            <h3>Visita con id: {{visita.getId()}} | Valoracion: {{visita.getValoracion()}} </h3>
-            <h4>{{visita.getComentario()}} </h4>
+         {{form(formulario)}}     
+
+         {% for type, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ type }}">
+                {{ message }}
+            </div>
         {% endfor %}
-        {% endif %} 
-
-        <button>
-                <a href="{{path('crear_visita_con_restaurante', {idRestaurante: restaurante.getId()})}}"> AÑADIR COMENTARIO </a>
-        </button>
+    {% endfor %} 
         
         {% endblock %}
     </body>

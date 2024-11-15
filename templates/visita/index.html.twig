@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello VisitaController!{% endblock %}
+{% block title %}Hello RestauranteController!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,47 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>{{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/christian/Documentos/Cosas de 2ºDAW/PHP/blog/src/Controller/VisitaController.php</code></li>
-        <li>Your template at <code>C:/Users/christian/Documentos/Cosas de 2ºDAW/PHP/blog/templates/visita/index.html.twig</code></li>
-    </ul>
+    Listado de visitas:
+    {% for visita in listadoVisitas %}
+        <ul>
+            <li>
+            <h2> Visita numero: {{visita.getId()}} | Restaurante: {{visita.getRestaurante().getNombre()}} | Valoración: {{visita.getValoracion()}}</h2>
+            <h3> {{visita.getComentario()}} 
+            <button>
+                <a href="{{path('actualizar_visita', {idVisita: visita.getId()})}}"> MODIFICAR </a>
+            </button>
+            <!-- Con la ayuda de ChatGPT: Este form sirve para poder pasarle a la funcion DELETE un boton que envie directamente una peticion POST
+         y además puedo usar un modal para preguntarle al usuario si quiere eliminar la visita o no -->
+            <form action="{{ path('eliminar_visita', {idVisita: visita.getId()}) }}" method="POST" style="display:inline;">
+                <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar la visita?');">ELIMINAR</button>
+            </form>
+            </h3>
+            </li>
+        </ul>
+    {% endfor %}
+
+    <!-- Con la ayuda de ChatGPT: Muestra todos los mensajes flash que he guardado. En este caso, los he utilizado en la funcion del DELETE -->
+    {% for type, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ type }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+
+    <br>
+
+    <div>
+    <button> 
+        <a href="{{path('crear_visita')}}">NUEVA VISITA</a>
+    </button>
+    <button> 
+        <a href="{{path('mostrartodos_restaurante')}}">VER RESTAURANTES</a>
+    </button>
+    </div>
+    
 </div>
 {% endblock %}

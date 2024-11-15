@@ -22,8 +22,8 @@
             <button>
                 <a href="{{path('actualizar_restaurante', {idRestaurante: restaurante.getId()})}}"> ACTUALIZAR </a>
             </button>
-            //Con la ayuda de ChatGPT: Este form sirve para poder pasarle a la funcion DELETE un boton que envie directamente una peticion POST
-            //y además puedo usar un modal para preguntarle al usuario si quiere eliminar el restaurante o no
+            <!-- Con la ayuda de ChatGPT: Este form sirve para poder pasarle a la funcion DELETE un boton que envie directamente una peticion POST
+         y además puedo usar un modal para preguntarle al usuario si quiere eliminar el restaurante o no -->
             <form action="{{ path('eliminar_restaurante', {idRestaurante: restaurante.getId()}) }}" method="POST" style="display:inline;">
                 <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este restaurante?');">ELIMINAR</button>
             </form>
@@ -32,7 +32,7 @@
         </ul>
     {% endfor %}
 
-    //Con la ayuda de ChatGPT: Muestra todos los mensajes flash que he guardado. En este caso, los he utilizado en la funcion del DELETE
+    <!-- Con la ayuda de ChatGPT: Muestra todos los mensajes flash que he guardado. En este caso, los he utilizado en la funcion del DELETE -->
     {% for type, messages in app.flashes %}
         {% for message in messages %}
             <div class="alert alert-{{ type }}">
@@ -43,10 +43,14 @@
 
 
     <br>
-
+    <div>
     <button> 
         <a href="{{path('crear_restaurante')}}">CREAR RESTAURANTE</a>
     </button>
+    <button> 
+        <a href="{{path('mostrartodos_visita')}}">VER VISITAS</a>
+    </button>
+    </div>
     
 </div>
 {% endblock %}
