@@ -118,24 +118,41 @@ class RestauranteController extends AbstractController
         
         $fb = $this->createFormBuilder($restaurante);
         $fb->add('Nombre', TextType::class, [
-            'attr' => [
-                'placeholder' => 'Bar Ejemplo',
+            "constraints"=>[
+                new Length(["min"=>1,"max"=> 256]),
+                new NotBlank()
             ],
+            'attr' => [
+                'placeholder' => 'Bar Ejemplo'
+            ]
         ]);
-        $fb->add('Direccion', TextType::class, [
-            'attr' => [
-                'placeholder' => 'C/ Ejemplo 3',
+        $fb->add("Direccion", TextType::class, [
+    
+            "constraints"=>[
+                new Length(["min"=>1,"max"=> 256]),
+                new NotBlank()
             ],
+            'attr' => [
+                'placeholder' => 'C/ Ejemplo 5'
+            ]
         ]);
-        $fb->add('Telefono', TextType::class, [
-            'attr' => [
-                'placeholder' => '999999999',
+        $fb->add("Telefono", TextType::class, [
+            "required" => false,
+            "constraints"=>[
+                new Length(["min"=>9,"max"=> 12])
             ],
+            'attr' => [
+                'placeholder' => '999999999'
+            ]
         ]);
-        $fb->add('Tipo_de_cocina', TextType::class, [
-            'attr' => [
-                'placeholder' => 'Española',
+        $fb->add("Tipo_de_cocina", TextType::class, [
+            "required" => false,
+            "constraints"=>[
+                new Length(["min"=>1,"max"=> 255])
             ],
+            'attr' => [
+                'placeholder' => 'Española'
+            ]
         ]);
         $fb->add('Guardar', SubmitType::class, [
             'label' => 'Guardar cambios',
