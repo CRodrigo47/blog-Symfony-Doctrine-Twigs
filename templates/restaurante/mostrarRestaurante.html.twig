@@ -20,10 +20,10 @@
 
     <h1> {{controller_name}} </h1>
 
-        <h2>{{restaurante.getNombre()}} </h2>
-        <h2>{{restaurante.getDireccion()}} </h2>
-        <h2>{{restaurante.getTelefono()}} </h2>
-        <h2>{{restaurante.getTipoDeCocina()}} </h2>
+        <h2>NOMBRE: {{restaurante.getNombre()}} </h2>
+        <h2>DIRECCION: {{restaurante.getDireccion()}} </h2>
+        <h2>TELEFONO: {{restaurante.getTelefono()}} </h2>
+        <h2>TIPO DE COCINA: {{restaurante.getTipoDeCocina()}} </h2>
         <h2>Visitas al restaurante: </h2>
         {% if restaurante.getVisitas() is empty %}
             <h3>Este restaurante no tiene visitas. </h3>
